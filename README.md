@@ -4,19 +4,22 @@ UTM or [Universal Transverse Mercator][2] is an older system for specifying a gl
 
 In Norway, this UTM system is a standard way for governmental organizations to define location. For example, [Ruter][4], the public transit agency, uses it in their public transit [APIs][1]. This library will tranlate between a UTM coordinate and the Lat/Long coordinates that are more commonly used on modern platforms like iOS.
 
-#### Sample Code ####
-
-    UTMCoordinates coordinates;
-    coordinates.gridZone = 32;
-    coordinates.northing = 6643010;
-    coordinates.easting = 598430;
-    coordinates.hemisphere = kUTMHemisphereNorthern;
+#### Example ####
+```obj-c
+UTMCoordinates coordinates;
+coordinates.gridZone = 32;
+coordinates.northing = 6643010;
+coordinates.easting = 598430;
+coordinates.hemisphere = kUTMHemisphereNorthern;
     
-    CLLocationCoordinate2D groenland = [GeodeticUTMConverter UTMCoordinatesToLatitudeAndLongitude:coordinates];
+CLLocationCoordinate2D groenlandCoordinate = [GeodeticUTMConverter UTMCoordinatesToLatitudeAndLongitude:coordinates];
+```
 
 If you want to supply your own Datum, then
 
-    GeodeticUTMConverter *converter = [[GeodeticUTMConverter alloc] initWithDatum:UTMDatumMake(6378137, 6356752.3142)];
+```obj-c
+GeodeticUTMConverter *converter = [[GeodeticUTMConverter alloc] initWithDatum:UTMDatumMake(6378137, 6356752.3142)];
+```
 
 [1]: http://labs.trafikanten.no/2011/3/22/hvordan-bruke-json-data.aspx
 [2]: http://en.wikipedia.org/wiki/Universal_Transverse_Mercator_coordinate_system
